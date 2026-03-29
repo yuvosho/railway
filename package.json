@@ -1,0 +1,30 @@
+{
+  "name": "valsho-web-audit",
+  "version": "1.0.0",
+  "description": "Sistema de auditoría semanal automatizada para valsho.com.ar",
+  "main": "monitoring/weekly-audit.js",
+  "scripts": {
+    "audit": "node monitoring/weekly-audit.js",
+    "report": "node monitoring/generate-report.js",
+    "audit:full": "npm run audit && npm run report"
+  },
+  "keywords": [
+    "seo",
+    "accessibility",
+    "performance",
+    "audit",
+    "website"
+  ],
+  "author": "Valsho Bazar",
+  "license": "MIT",
+  "dependencies": {
+    "lighthouse": "^11.4.0",
+    "puppeteer": "^21.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "chart.js": "^4.4.0",
+    "node-html-parser": "^6.1.12"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
