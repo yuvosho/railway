@@ -1,0 +1,31 @@
+{
+  "url": "https://valsho.com.ar",
+  "pages": [
+    "https://valsho.com.ar",
+    "https://valsho.com.ar/productos"
+  ],
+  "targets": {
+    "performanceMobile": 80,
+    "performanceDesktop": 90,
+    "seo": 85,
+    "accessibility": 100,
+    "images": 90,
+    "responsiveness": 95,
+    "loadTime": 2500,
+    "altTextCoverage": 100
+  },
+  "bazarKeywords": [
+    "bazar online argentina",
+    "productos bazar moderno",
+    "accesorios cocina modernos",
+    "organizadores hogar",
+    "decoracion moderna",
+    "bazar diseño instagram",
+    "productos instagrameables",
+    "regalos originales bazar",
+    "bazar valsho",
+    "articulos hogar modernos"
+  ],
+  "reportFormat": "html",
+  "schedule": "0 11 * * 1"
+}
