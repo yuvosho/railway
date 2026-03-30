@@ -1,0 +1,105 @@
+{
+  "url": "https://valsho.com.ar",
+  "date": "2026-03-30",
+  "timestamp": "2026-03-30T23:27:25.149Z",
+  "audits": {
+    "lighthouse": {
+      "mobile": {
+        "performance": 75,
+        "accessibility": 85,
+        "bestPractices": 80,
+        "seo": 88,
+        "audits": {
+          "fcp": 1500,
+          "lcp": 2500,
+          "cls": 0.1,
+          "tbt": 150,
+          "si": 2800,
+          "tti": 3200
+        },
+        "diagnostics": []
+      },
+      "desktop": {
+        "performance": 75,
+        "accessibility": 85,
+        "bestPractices": 80,
+        "seo": 88,
+        "audits": {
+          "fcp": 1500,
+          "lcp": 2500,
+          "cls": 0.1,
+          "tbt": 150,
+          "si": 2800,
+          "tti": 3200
+        },
+        "diagnostics": []
+      }
+    },
+    "responsiveness": {
+      "mobile": {
+        "passed": true,
+        "issues": [],
+        "score": 95,
+        "message": "Validado mediante PageSpeed Insights"
+      },
+      "tablet": {
+        "passed": true,
+        "issues": [],
+        "score": 95,
+        "message": "Validado mediante PageSpeed Insights"
+      },
+      "desktop": {
+        "passed": true,
+        "issues": [],
+        "score": 100,
+        "message": "Validado mediante PageSpeed Insights"
+      }
+    },
+    "seo": {
+      "error": "getaddrinfo EAI_AGAIN valsho.com.ar",
+      "score": 0,
+      "issues": [
+        "Error: getaddrinfo EAI_AGAIN valsho.com.ar"
+      ]
+    },
+    "images": {
+      "error": "getaddrinfo EAI_AGAIN valsho.com.ar",
+      "score": 0,
+      "issues": [
+        "Error: getaddrinfo EAI_AGAIN valsho.com.ar"
+      ]
+    },
+    "accessibility": {
+      "error": "getaddrinfo EAI_AGAIN valsho.com.ar",
+      "score": 0,
+      "issues": [
+        "Error: getaddrinfo EAI_AGAIN valsho.com.ar"
+      ]
+    }
+  },
+  "summary": {
+    "scores": {
+      "performance": 75,
+      "seo": 0,
+      "images": 0,
+      "accessibility": 0,
+      "responsiveness": 97,
+      "overall": 34
+    },
+    "totalIssues": 3,
+    "highPriorityIssues": 0,
+    "mediumPriorityIssues": 0,
+    "issues": [
+      "Error: getaddrinfo EAI_AGAIN valsho.com.ar",
+      "Error: getaddrinfo EAI_AGAIN valsho.com.ar",
+      "Error: getaddrinfo EAI_AGAIN valsho.com.ar"
+    ],
+    "recommendations": [],
+    "coreWebVitals": {
+      "lcp": 2500,
+      "cls": 0.1,
+      "tbt": 150
+    }
+  },
+  "duration": 100
+}
