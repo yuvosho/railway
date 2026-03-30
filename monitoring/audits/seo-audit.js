@@ -1,17 +1,9 @@
-const puppeteer = require('puppeteer');
+const https = require('https');
 const cheerio = require('cheerio');
 
 async function runSeoAudit(url) {
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
-
-  const page = await browser.newPage();
-
   try {
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
-    const html = await page.content();
+    const html = await fetchHTML(url);
     const $ = cheerio.load(html);
 
     const results = {
@@ -19,7 +11,7 @@ async function runSeoAudit(url) {
       headings: auditHeadings($),
       links: await auditLinks($, url, page),
       schema: auditSchema($),
-      technical: await auditTechnical(url, page),
+      technical: await auditTechnical(url),
       keywords: auditKeywords($),
       score: 0,
       issues: [],
@@ -30,12 +22,28 @@ async function runSeoAudit(url) {
     results.issues = collectIssues(results);
     results.recommendations = generateRecommendations(results);
 
-    await browser.close();
     return results;
   } catch (error) {
-    await browser.close();
     return { error: error.message, score: 0, issues: [`Error: ${error.message}`] };
   }
+}
+
+function fetchHTML(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve(data));
+    }).on('error', reject);
+  });
+}
+
+function checkURLExists(url) {
+  return new Promise((resolve) => {
+    https.head(url, (res) => {
+      resolve(res.statusCode === 200);
+    }).on('error', () => resolve(false));
+  });
 }
 
 function auditMetaTags($, url) {
@@ -188,24 +196,29 @@ function auditSchema($) {
   return { schemas: schemas.map(s => s.type), issues, hasProduct, hasOrganization, hasBreadcrumb };
 }
 
-async function auditTechnical(url, page) {
+async function auditTechnical(url) {
   const issues = [];
+  const origin = new URL(url).origin;
 
   try {
-    const robotsResponse = await page.goto(`${new URL(url).origin}/robots.txt`, { timeout: 10000 });
-    const hasRobots = robotsResponse && robotsResponse.status() === 200;
+    const hasRobots = await checkURLExists(`${origin}/robots.txt`);
     if (!hasRobots) issues.push('Falta robots.txt');
 
-    const sitemapResponse = await page.goto(`${new URL(url).origin}/sitemap.xml`, { timeout: 10000 });
-    const hasSitemap = sitemapResponse && sitemapResponse.status() === 200;
+    const hasSitemap = await checkURLExists(`${origin}/sitemap.xml`);
     if (!hasSitemap) issues.push('Falta sitemap.xml');
-
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
     return { hasRobots, hasSitemap, issues };
   } catch {
     return { hasRobots: false, hasSitemap: false, issues: ['Error verificando archivos tecnicos'] };
   }
+}
+
+function checkURLExists(url) {
+  return new Promise((resolve) => {
+    https.head(url, (res) => {
+      resolve(res.statusCode === 200);
+    }).on('error', () => resolve(false));
+  });
 }
 
 function auditKeywords($) {
