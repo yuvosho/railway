@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>estudioarq. — Control de Obras</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <svg class="leaf" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M10 54 C 10 28, 30 8, 56 8 C 56 34, 36 54, 10 54 Z" stroke="currentColor" stroke-width="1.6" fill="none"/>
+      <path d="M12 52 C 24 38, 40 24, 54 12" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <path d="M22 44 C 26 40, 30 36, 34 32" stroke="currentColor" stroke-width="1" fill="none"/>
+      <path d="M32 36 C 36 32, 40 28, 44 24" stroke="currentColor" stroke-width="1" fill="none"/>
+      <path d="M14 46 C 18 42, 22 38, 26 34" stroke="currentColor" stroke-width="1" fill="none"/>
+    </svg>
+
+    <div>
+      <div class="sidebar-title">CREATIVO / DISEÑO<br>ESTUDIO BOUTIQUE</div>
+    </div>
+    <div class="sidebar-divider"></div>
+
+    <ul class="sidebar-bullets">
+      <li>Colores cálidos y naturales</li>
+      <li>Estilo más creativo y moderno</li>
+      <li>Cercano y femenino</li>
+      <li>Ideal para estudios de arquitectura y diseño</li>
+    </ul>
+
+    <div class="sidebar-spacer"></div>
+
+    <svg class="leaf-bottom" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 70 C 14 36, 38 12, 70 12 C 70 44, 46 70, 14 70 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <path d="M16 68 C 30 50, 50 32, 68 16" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      <path d="M28 58 C 34 52, 40 46, 46 40" stroke="currentColor" stroke-width="0.9" fill="none"/>
+      <path d="M40 50 C 46 44, 52 38, 58 32" stroke="currentColor" stroke-width="0.9" fill="none"/>
+    </svg>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-name">estudioarq.</span>
+        <span class="brand-sub">CONTROL DE OBRAS</span>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#dashboard"   data-route="dashboard">dashboard</a>
+        <a href="#presupuesto" data-route="presupuesto">presupuesto</a>
+        <a href="#cashflow"    data-route="cashflow">cashflow</a>
+        <a href="#proveedores" data-route="proveedores">proveedores</a>
+        <a href="#reportes"    data-route="reportes">reportes</a>
+      </nav>
+      <div class="topbar-actions gap-12" style="align-items:center;">
+        <button class="btn small" id="btn-load-excel" title="Cargar datos desde Excel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          Cargar Excel
+        </button>
+        <button class="btn small" id="btn-download-template" title="Descargar plantilla Excel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>
+          Plantilla
+        </button>
+        <input type="file" id="file-input" accept=".xlsx,.xls" style="display:none">
+      </div>
+    </div>
+
+    <!-- VIEW CONTAINER (rendered by app.js) -->
+    <div id="view"></div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="sample-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
